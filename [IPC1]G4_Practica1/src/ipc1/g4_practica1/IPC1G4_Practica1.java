@@ -104,4 +104,93 @@ public class IPC1G4_Practica1 {
             }
         }
     }
+    public static int[][] multiplicarMatriz(int[][] a, int[][] b) {
+        int[][] c = new int[a.length][b[0].length];
+        // se comprueba si las matrices se pueden multiplicar
+        if (a[0].length == b.length) {
+            for (int i = 0; i < a.length; i++) {
+                for (int j = 0; j < b[0].length; j++) {
+                    for (int k = 0; k < a[0].length; k++) {
+                        // aquí se multiplica la matriz
+                        c[i][j] += a[i][k] * b[k][j];
+                    }
+                }
+            }
+        }
+        /**
+         * si no se cumple la condición se retorna una matriz vacía
+         */
+        return c;
+    }
+    public static int[][] sumarMatriz(int[][] matrizA, int[][] matrizB) {
+        int[][] matrizResultado;
+        int filasA = matrizA.length;
+        int columnasA = matrizA[0].length;
+
+        int filasB = matrizB.length;
+        int columnasB = matrizB[0].length;
+
+        System.out.println("Primera matriz:");
+        for (int i = 0; i < filasA; i++) {
+            for (int j = 0; j < columnasA; j++) {
+                System.out.print(matrizA[i][j] + "   ");
+            }
+            System.out.println("");
+        }
+
+        System.out.println("Segunda matriz:");
+        for (int i = 0; i < filasA; i++) {
+            for (int j = 0; j < columnasA; j++) {
+                System.out.print(matrizB[i][j] + "   ");
+            }
+            System.out.println("");
+        }
+
+        if (filasA == filasB && columnasB == columnasA) {
+
+            matrizResultado = new int[filasA][columnasA];
+            for (int i = 0; i < filasA; i++) {
+                for (int j = 0; j < columnasA; j++) {
+                    matrizResultado[i][j] = matrizA[i][j] + matrizB[i][j];
+                }
+            }
+
+        } else {
+            throw new Error("Las matrices deben tener la misma cantidad de filas que columnas");
+        }
+        System.out.println("Matriz resultado:");
+        for (int i = 0; i < filasA; i++) {
+            for (int j = 0; j < columnasA; j++) {
+                System.out.print(matrizResultado[i][j] + "   ");
+            }
+            System.out.println("");
+        }
+        return matrizResultado;
+    }
+    public static int[][] restarMatriz(int[][] matrizA, int[][] matrizB) {
+        int[][] matrizResultado;
+        int filasA = matrizA.length;
+        int columnasA = matrizA[0].length;
+
+        int filasB = matrizB.length;
+        int columnasB = matrizB[0].length;
+
+        if (filasA == filasB && columnasB == columnasA) {
+
+            matrizResultado = new int[filasA][columnasA];
+            for (int i = 0; i < filasA; i++) {
+                for (int j = 0; j < columnasA; j++) {
+                    matrizResultado[i][j] = matrizA[i][j] - matrizB[i][j];
+                }
+            }
+
+        } else {
+            throw new Error("Las matrices deben tener la misma cantidad de filas que columnas");
+        }
+        System.out.println("Matriz resultado:");
+
+        return matrizResultado;
+    }
+    
+    
 }
