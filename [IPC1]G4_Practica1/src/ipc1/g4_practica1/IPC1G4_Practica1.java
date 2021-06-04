@@ -11,6 +11,10 @@ public class IPC1G4_Practica1 {
         //Menú de inicio de forma cíclica                                                    
         do {
             try {
+                
+                // intento de push
+                
+                
                 System.out.println("-------------Menu principal-------------");
                 System.out.println("    1.  Cargar matrices                 ");
                 System.out.println("    2.  Sumar matrices                  ");
