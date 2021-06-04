@@ -11,10 +11,8 @@ public class IPC1G4_Practica1 {
         //Menú de inicio de forma cíclica                                                    
         do {
             try {
-                
+
                 // intento de push
-                
-                
                 System.out.println("-------------Menu principal-------------");
                 System.out.println("    1.  Cargar matrices                 ");
                 System.out.println("    2.  Sumar matrices                  ");
@@ -36,10 +34,47 @@ public class IPC1G4_Practica1 {
                 System.out.println("opcion = " + opcion);
                 System.out.println();
 
+                switch (opcion) {
+
+                    case 1://1.  Cargar matrices   
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        break;
+                    case 2://2.  Sumar matrices  
+                        break;
+                    case 3://3.  Restar matrices  
+                        break;
+                    case 4://4.  Multiplicar matrices  
+                        break;
+                    case 5://5.  Dividir matrices    
+                        break;
+                    case 6://6.  Traspuesta de una matriz  
+                        break;
+                    case 7://7.  Matriz inversa    
+                        break;
+                    case 8://8.  Potencia de una matriz   
+                        break;
+                    case 9://9.  Determinante de una matriz 
+                        break;
+                    case 10://10. Matriz R   
+                        break;
+                    case 11://11. Reportes 
+                        break;
+                    case 12://12. salir
+                        break;
+
+                }
+
             } catch (Exception e) {
                 System.out.println("¡Ups! Ocurrió un error, inténtalo de nuevo.");
                 entrada.nextLine();
             }
         } while (opcion != 12);
     }
+
 }
