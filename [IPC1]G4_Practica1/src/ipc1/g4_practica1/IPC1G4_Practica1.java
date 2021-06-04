@@ -7,7 +7,9 @@ import java.io.FileReader;
 import java.util.Scanner;
 
 public class IPC1G4_Practica1 {
-
+    //public static int Matriz[][][];//Esta hace referencia al guardado de cada una de las matrices
+    public static Scanner entrada = new Scanner(System.in);
+    
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
         int opcion = 0;
@@ -36,7 +38,8 @@ public class IPC1G4_Practica1 {
                 System.out.println();
 
                 switch (opcion) {
-                    case 1://1.  Cargar matrices   
+                    case 1://1.  Cargar matrices  
+                        Ruta();
                         break;
                     case 2://2.  Sumar matrices  
                         break;
@@ -71,39 +74,112 @@ public class IPC1G4_Practica1 {
             }
         } while (opcion != 12);
     }
+    public static void getContentOfFile(String pathname) {
+    File archivo = null;
+    FileReader fr = null;
+    BufferedReader br = null;
 
-    public static void GuardarMatrizArchivo(String ruta, int[][] matriz) {
-
-        File archivo = null;
-        FileReader fr = null;
-        BufferedReader br = null;
-        try {
-            archivo = new File(ruta);
-            fr = new FileReader(archivo);
-            br = new BufferedReader(fr);
-
-            String linea;
-
-            int contadorFilas = 0;
+    try {
+        // Apertura del fichero y creacion de BufferedReader para poder
+        // hacer una lectura comoda (disponer del metodo readLine()).
+        archivo = new File(pathname);
+        fr = new FileReader(archivo);
+        br = new BufferedReader(fr);
+        // Lectura del fichero
+        String content = "";
+        String linea;
+            //Cada linea leída del txt representa una matriz            
             while ((linea = br.readLine()) != null) {
-                String[] numeros = linea.split(",");
-                for (int i = 0; i < numeros.length; i++) {
-                    matriz[contadorFilas][i] = Integer.parseInt(numeros[i]);
+                
+                String[] nombre_datos = linea.split(":");
+                //nombre_datos[0] es el nombre de la matriz
+                System.out.println(nombre_datos[1].trim());// estan los datos de la matriz
+
+                if (nombre_datos[1].contains(";")) {
+                    //La matriz posee varias filas, se puede hacer split
+                    if (nombre_datos[1].contains(",")) {
+                        //La matriz posee varias columnas
+
+                        String[] filas = nombre_datos[1].split(";");
+                        //Cada elemento del array es una fila de la matriz
+
+                        String[] columnas = filas[0].split(",");
+                        //Este split es solo para obtener el número de columnas de la matriz y poder declararla
+
+                        //Declarando la matriz
+                        double[][] Matriz = new double[filas.length][columnas.length];
+
+                        for (int i = 0; i < filas.length; i++) {
+                            String[] datosEnLaFila = filas[i].split(",");
+                            //Para cada fila, se hace split de las comas para obtener los datos de la matriz
+
+                            for (int j = 0; j < datosEnLaFila.length; j++) {
+                                Matriz[i][j] = Double.parseDouble(datosEnLaFila[j].trim());
+                                System.out.print("" + Matriz[i][j] + "\t");
+                            }
+                             System.out.println("\t");
+                        }
+
+                    } else {
+                        //La matriz posee una columna y varias filas
+
+                        String[] filas = nombre_datos[1].split(";");
+                        //Cada elemento del array es una fila de la matriz
+
+                        //Declarando la matriz
+                        double[][] Matriz = new double[filas.length][1];
+
+                        for (int i = 0; i < filas.length; i++) {
+                            Matriz[i][0] = Double.parseDouble(filas[i].trim());
+                        }
+
+                    }
+                } else if (nombre_datos[1].contains(",")) {
+                    //La matriz posee una fila y varias columnas
+
+                        String[] columnas = nombre_datos[1].split(",");
+                        //Cada elemento del array es una columna de la matriz
+
+                        //Declarando la matriz
+                        double[][] Matriz = new double[1][columnas.length];
+
+                        for (int i = 0; i < columnas.length; i++) {
+                            Matriz[0][i] = Double.parseDouble(columnas[i].trim());
+                        }
+
+                } else {
+                    //La matriz posee un único dato
+
+                    //Declarando la matriz
+                    double[] Matriz = new double[1];
+                    Matriz[0] = Double.parseDouble(nombre_datos[1].trim());
                 }
-                contadorFilas++;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (null != fr) {
-                    fr.close();
-                }
-            } catch (Exception e2) {
-                e2.printStackTrace();
+       
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        // En el finally cerramos el fichero, para asegurarnos
+        // que se cierra tanto si todo va bien como si salta
+        // una excepcion.
+        try {
+            if (null != fr) {
+                fr.close();
             }
+        } catch (Exception e2) {
+            e2.printStackTrace();
         }
     }
+  
+}
+    
+    public static void Ruta() {//carga y guardado del contenido del Txt
+        System.out.print("Ingrese ruta del txt ");
+        String ruta = entrada.nextLine();
+        getContentOfFile(ruta);
+    }
+    
+    
     public static int[][] multiplicarMatriz(int[][] a, int[][] b) {
         int[][] c = new int[a.length][b[0].length];
         // se comprueba si las matrices se pueden multiplicar
