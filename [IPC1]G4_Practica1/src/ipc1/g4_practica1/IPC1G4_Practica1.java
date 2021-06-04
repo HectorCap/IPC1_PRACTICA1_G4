@@ -11,18 +11,18 @@ public class IPC1G4_Practica1 {
         do {
             try {
                 System.out.println("-------------Menu principal-------------");
-                System.out.println("    1.  Cargar matrices");
-                System.out.println("    2.  Sumar matrices");
-                System.out.println("    3.  Restar matrices");
-                System.out.println("    4.  Multiplicar matrices");
-                System.out.println("    5.  Dividir matrices");
-                System.out.println("    6.  Traspuesta de una matriz");
-                System.out.println("    7.  Matriz inversa");
-                System.out.println("    8.  Potencia de una matriz");
-                System.out.println("    9.  Determinante de una matriz");
-                System.out.println("    10. Matriz R");
-                System.out.println("    11. Reportes");
-                System.out.println("    12. SALIR");
+                System.out.println("    1.  Cargar matrices                 ");
+                System.out.println("    2.  Sumar matrices                  ");
+                System.out.println("    3.  Restar matrices                 ");
+                System.out.println("    4.  Multiplicar matrices            ");
+                System.out.println("    5.  Dividir matrices                ");
+                System.out.println("    6.  Traspuesta de una matriz        ");
+                System.out.println("    7.  Matriz inversa                  ");
+                System.out.println("    8.  Potencia de una matriz          ");
+                System.out.println("    9.  Determinante de una matriz      ");
+                System.out.println("    10. Matriz R                        ");
+                System.out.println("    11. Reportes                        ");
+                System.out.println("    12. SALIR                           ");
                 System.out.println("----------------------------------------");
 
                 System.out.print("Ingrese una opción: ");
