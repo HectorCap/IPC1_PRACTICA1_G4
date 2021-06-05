@@ -69,6 +69,7 @@ public class IPC1G4_Practica1 {
                         Ruta();
                         break;
                     case 2://2.  Sumar matrices  
+                           
                         break;
                     case 3://3.  Restar matrices  
                         break;
@@ -89,6 +90,7 @@ public class IPC1G4_Practica1 {
                     case 11://11. Reportes 
                         break;
                     case 12://12. SALIR
+                        System.out.println("Gracias por utulizar el programa");
                         break;
                     default:
                         System.out.println("Opcion no válida. Inténtelo de nuevo.");
@@ -124,9 +126,9 @@ public class IPC1G4_Practica1 {
 //                System.out.println(nombre_datos[1].trim());// estan los datos de la matriz
                 System.out.println(nombre_datos[0].trim());//estan los datos de los indices
 
-                if (nombre_datos[1].contains(";")) {
+                if (nombre_datos[1].contains(";") || nombre_datos[1].contains(",") ) { // se agrego "o" para comprobar matriz 1x1 y 1xN
                     //La matriz posee varias filas, se puede hacer split
-                    if (nombre_datos[1].contains(",")) {
+                    if (nombre_datos[1].contains(",") || nombre_datos[1].contains(";")) {
                         //La matriz posee varias columnas
 
                         String[] filas = nombre_datos[1].split(";");
@@ -144,7 +146,7 @@ public class IPC1G4_Practica1 {
 
                             for (int j = 0; j < datosEnLaFila.length; j++) {
                                 Matriz[i][j] = Double.parseDouble(datosEnLaFila[j].trim());
-                                System.out.print("" + Matriz[i][j] + "\t");
+                                System.out.print("|" + Matriz[i][j] +"|" + "\t");  // se agrego el separador para visualizar bien las matrices
 
                             }
 
@@ -312,13 +314,18 @@ public class IPC1G4_Practica1 {
                 e2.printStackTrace();
             }
         }
-
+       
     }
 
     public static void Ruta() {//carga y guardado del contenido del Txt
         System.out.println("Ingrese ruta del txt: ");
         String ruta = entrada.nextLine();
         getContentOfFile(ruta);
+    }
+    
+    public static void seleccionMatriz(){
+        System.out.println("Ingrese la primera matriz:");
+        
     }
 
     public static int[][] multiplicarMatriz(int[][] a, int[][] b) {
@@ -411,4 +418,5 @@ public class IPC1G4_Practica1 {
         return matrizResultado;
     }
 
+   
 }
