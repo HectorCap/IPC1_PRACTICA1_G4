@@ -36,6 +36,7 @@ public class IPC1G4_Practica1 {
     public static double matrizX[][];
     public static double matrizY[][];
     public static double matrizZ[][];
+    public static String[] nombre_datos;//Vector donde estan los nombres de la matriz
 
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
@@ -69,11 +70,20 @@ public class IPC1G4_Practica1 {
                         Ruta();
                         break;
                     case 2://2.  Sumar matrices  
-                           
+                        
+                        double [][]matriz1 = EncontrarMatriz();//encuentra la matriz para poder ser utilizada y la guardamos en nueva variable
+                        double [][]matriz2 = EncontrarMatriz();
+                        matrizR = sumarMatriz(matriz1,matriz2);
                         break;
                     case 3://3.  Restar matrices  
+                        double [][]matriz3 = EncontrarMatriz();//encuentra la matriz para poder ser utilizada y la guardamos en nueva variable
+                        double [][]matriz4 = EncontrarMatriz();
+                        matrizR = restarMatriz(matriz3,matriz4);
                         break;
                     case 4://4.  Multiplicar matrices  
+                        double [][]matriz5 = EncontrarMatriz();//encuentra la matriz para poder ser utilizada y la guardamos en nueva variable
+                        double [][]matriz6 = EncontrarMatriz();
+                        matrizR = multiplicarMatriz(matriz5,matriz6);
                         break;
                     case 5://5.  Dividir matrices    
                         break;
@@ -86,11 +96,20 @@ public class IPC1G4_Practica1 {
                     case 9://9.  Determinante de una matriz 
                         break;
                     case 10://10. Matriz R   
+                        System.out.println("La matriz R es: ");
+                        for (int i = 0; i < matrizR.length; i++) {
+                            for (int j = 0; j < matrizR[0].length; j++) {
+                                
+                            System.out.print(matrizR[i][j] + "   ");
+            }
+                 System.out.println("");
+                        }
                         break;
                     case 11://11. Reportes 
                         break;
                     case 12://12. SALIR
-                        System.out.println("Gracias por utulizar el programa");
+                        System.out.println("Gracias por utulizar el programa ");
+                        System.out.println("Saliendo...");
                         break;
                     default:
                         System.out.println("Opcion no válida. Inténtelo de nuevo.");
@@ -121,14 +140,14 @@ public class IPC1G4_Practica1 {
             //Cada linea leída del txt representa una matriz            
             while ((linea = br.readLine()) != null) {
 
-                String[] nombre_datos = linea.split(":");
+                nombre_datos = linea.split(":");
                 //nombre_datos[0] es el nombre de la matriz
 //                System.out.println(nombre_datos[1].trim());// estan los datos de la matriz
                 System.out.println(nombre_datos[0].trim());//estan los datos de los indices
 
-                if (nombre_datos[1].contains(";") || nombre_datos[1].contains(",") ) { // se agrego "o" para comprobar matriz 1x1 y 1xN
+                 if (nombre_datos[1].contains(";") || nombre_datos[1].contains(",") ) { 
                     //La matriz posee varias filas, se puede hacer split
-                    if (nombre_datos[1].contains(",") || nombre_datos[1].contains(";")) {
+                 if (nombre_datos[1].contains(",") || nombre_datos[1].contains(";")) {
                         //La matriz posee varias columnas
 
                         String[] filas = nombre_datos[1].split(";");
@@ -146,7 +165,7 @@ public class IPC1G4_Practica1 {
 
                             for (int j = 0; j < datosEnLaFila.length; j++) {
                                 Matriz[i][j] = Double.parseDouble(datosEnLaFila[j].trim());
-                                System.out.print("|" + Matriz[i][j] +"|" + "\t");  // se agrego el separador para visualizar bien las matrices
+                               System.out.print("|" + Matriz[i][j] +"|" + "\t"); 
 
                             }
 
@@ -314,23 +333,108 @@ public class IPC1G4_Practica1 {
                 e2.printStackTrace();
             }
         }
-       
+
     }
 
     public static void Ruta() {//carga y guardado del contenido del Txt
-        System.out.println("Ingrese ruta del txt: ");
+        System.out.print("Ingrese ruta del txt: ");
         String ruta = entrada.nextLine();
         getContentOfFile(ruta);
     }
-    
-    public static void seleccionMatriz(){
-        System.out.println("Ingrese la primera matriz:");
-        
-    }
 
-    public static int[][] multiplicarMatriz(int[][] a, int[][] b) {
-        int[][] c = new int[a.length][b[0].length];
+    public static double[][] EncontrarMatriz(){
+        try{
+        System.out.print("Ingrese el nombre de la Matriz: ");
+        String Opcion = entrada.nextLine().toUpperCase();
+        switch(Opcion){
+            case "A":
+            return matrizA;
+            case "B":
+            return matrizB;
+            case "C":
+            return matrizC;
+            case "D":
+            return matrizD;
+            case "E":
+            return matrizE;
+            case "F":
+            return matrizF;
+            case "G":
+            return matrizG;
+            case "H":
+            return matrizH;
+            case "I":
+            return matrizI;
+            case "J":
+            return matrizJ;
+            case "K":
+            return matrizK;
+            case "L":
+            return matrizL;
+            case "M":
+            return matrizM;
+            case "N":
+            return matrizN;
+            case "O":
+            return matrizO;
+            case "P":
+            return matrizP;
+            case "Q":
+            return matrizQ;
+            case "R":
+            return matrizR;
+            case "S":
+            return matrizS;
+            case "T":
+            return matrizT;
+            case "U":
+            return matrizU;
+            case "V":
+            return matrizV;
+            case "W":
+            return matrizW;
+            case "X":
+            return matrizX;
+            case "Y":
+            return matrizY;
+            case "Z":
+            return matrizZ;
+         
+        
+        
+        
+        }
+        } catch (Exception e) {
+                System.out.println("¡Ups! Ocurrió un error, inténtalo de nuevo.");
+                entrada.nextLine();
+        
+        
+        
+       ;
+       
+       
+    }
+        return null;
+     }
+   
+    public static double[][] multiplicarMatriz(double[][] a, double[][] b) {
+        double[][] c = new double[a.length][b[0].length];
         // se comprueba si las matrices se pueden multiplicar
+        System.out.println("Primera matriz:");
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < a[0].length; j++) {
+                System.out.print(a[i][j] + "   ");
+            }
+            System.out.println("");
+        }
+
+        System.out.println("Segunda matriz:");
+        for (int i = 0; i < b.length;i++) {
+            for (int j = 0; j < b[0].length; j++) {
+                System.out.print(b[i][j] + "   ");
+            }
+            System.out.println("");
+        }
         if (a[0].length == b.length) {
             for (int i = 0; i < a.length; i++) {
                 for (int j = 0; j < b[0].length; j++) {
@@ -344,79 +448,108 @@ public class IPC1G4_Practica1 {
         /**
          * si no se cumple la condición se retorna una matriz vacía
          */
+        System.out.println("Matriz resultado es:");
+        for (int i = 0; i < c.length; i++) {
+            for (int j = 0; j < c[0].length; j++) {
+                System.out.print(c[i][j] + "   ");
+            }
+            System.out.println("");
+        }
         return c;
     }
 
-    public static int[][] sumarMatriz(int[][] matrizA, int[][] matrizB) {
-        int[][] matrizResultado;
-        int filasA = matrizA.length;
-        int columnasA = matrizA[0].length;
+    public static double[][] sumarMatriz(double[][] matriz1, double[][] matriz2) {
+        
+        
+        double[][] matrizResultado;
+        int filasA = matriz1.length;
+        int columnasA = matriz1[0].length;
 
-        int filasB = matrizB.length;
-        int columnasB = matrizB[0].length;
+        int filasB = matriz2.length;
+        int columnasB = matriz2[0].length;
 
         System.out.println("Primera matriz:");
         for (int i = 0; i < filasA; i++) {
             for (int j = 0; j < columnasA; j++) {
-                System.out.print(matrizA[i][j] + "   ");
+                System.out.print("|" +matriz1[i][j] + "|");
             }
             System.out.println("");
         }
 
         System.out.println("Segunda matriz:");
-        for (int i = 0; i < filasA; i++) {
-            for (int j = 0; j < columnasA; j++) {
-                System.out.print(matrizB[i][j] + "   ");
+        for (int i = 0; i < filasB; i++) {
+            for (int j = 0; j < columnasB; j++) {
+                System.out.print("|"+matriz2[i][j] + "|");
             }
             System.out.println("");
         }
 
         if (filasA == filasB && columnasB == columnasA) {
 
-            matrizResultado = new int[filasA][columnasA];
+            matrizResultado = new double[filasA][columnasA];
             for (int i = 0; i < filasA; i++) {
                 for (int j = 0; j < columnasA; j++) {
-                    matrizResultado[i][j] = matrizA[i][j] + matrizB[i][j];
+                    matrizResultado[i][j] = matriz1[i][j] + matriz2[i][j];
                 }
             }
 
         } else {
             throw new Error("Las matrices deben tener la misma cantidad de filas que columnas");
         }
-        System.out.println("Matriz resultado:");
+        System.out.println("Matriz resultado es:");
         for (int i = 0; i < filasA; i++) {
             for (int j = 0; j < columnasA; j++) {
-                System.out.print(matrizResultado[i][j] + "   ");
+                System.out.print("|"+matrizResultado[i][j] + "|");
             }
             System.out.println("");
         }
         return matrizResultado;
     }
 
-    public static int[][] restarMatriz(int[][] matrizA, int[][] matrizB) {
-        int[][] matrizResultado;
-        int filasA = matrizA.length;
-        int columnasA = matrizA[0].length;
+    public static double[][] restarMatriz(double[][] matriz3, double[][] matriz4) {
+        double[][] matrizResultado;
+        int filasA = matriz3.length;
+        int columnasA = matriz3[0].length;
 
-        int filasB = matrizB.length;
-        int columnasB = matrizB[0].length;
+        int filasB = matriz4.length;
+        int columnasB = matriz4[0].length;
+        System.out.println("Primera matriz:");
+        for (int i = 0; i < filasA; i++) {
+            for (int j = 0; j < columnasA; j++) {
+                System.out.print("|"+matriz3[i][j] + "|");
+            }
+            System.out.println("");
+        }
+
+        System.out.println("Segunda matriz:");
+        for (int i = 0; i < filasB; i++) {
+            for (int j = 0; j < columnasB; j++) {
+                System.out.print("|"+matriz4[i][j] + "|");
+            }
+            System.out.println("");
+        }
 
         if (filasA == filasB && columnasB == columnasA) {
 
-            matrizResultado = new int[filasA][columnasA];
+            matrizResultado = new double[filasA][columnasA];
+            
             for (int i = 0; i < filasA; i++) {
                 for (int j = 0; j < columnasA; j++) {
-                    matrizResultado[i][j] = matrizA[i][j] - matrizB[i][j];
+                    matrizResultado[i][j] = matriz3[i][j] - matriz4[i][j];
                 }
             }
 
         } else {
             throw new Error("Las matrices deben tener la misma cantidad de filas que columnas");
         }
-        System.out.println("Matriz resultado:");
-
+        System.out.println("Matriz resultado es:");
+        for (int i = 0; i < filasA; i++) {
+            for (int j = 0; j < columnasA; j++) {
+                System.out.print("|"+matrizResultado[i][j] +"|");
+            }
+            System.out.println("");
+        }
         return matrizResultado;
     }
 
-   
 }
