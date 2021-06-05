@@ -1,4 +1,4 @@
-//03 Junio 2021
+//05 Junio 2021
 package ipc1.g4_practica1;
 
 import java.io.BufferedReader;
@@ -43,6 +43,7 @@ public class IPC1G4_Practica1 {
         int opcion = 0;
         //Menú de inicio de forma cíclica  
         // kevin 
+        
         do {
             try {
 
@@ -108,7 +109,7 @@ public class IPC1G4_Practica1 {
                     case 11://11. Reportes 
                         break;
                     case 12://12. SALIR
-                        System.out.println("Gracias por utulizar el programa ");
+                        System.out.println("Gracias por utilizar el programa ");
                         System.out.println("Saliendo...");
                         break;
                     default:
