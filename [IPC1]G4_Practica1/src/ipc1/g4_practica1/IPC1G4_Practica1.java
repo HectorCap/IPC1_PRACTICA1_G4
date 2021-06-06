@@ -115,6 +115,7 @@ public class IPC1G4_Practica1 {
                     case 8://8.  Potencia de una matriz   
                         break;
                     case 9://9.  Determinante de una matriz 
+                        determinante();
                         break;
                     case 10://10. Matriz R   
                         System.out.println("La matriz R es: ");
