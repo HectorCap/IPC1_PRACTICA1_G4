@@ -89,6 +89,8 @@ public class IPC1G4_Practica1 {
                     case 5://5.  Dividir matrices    
                         break;
                     case 6://6.  Traspuesta de una matriz  
+                        double [][]matriz7 = EncontrarMatriz();
+                        matrizR = TranspuestaMatriz(matriz7);
                         break;
                     case 7://7.  Matriz inversa    
                         break;
@@ -418,7 +420,7 @@ public class IPC1G4_Practica1 {
         return null;
      }
    
-    public static double[][] multiplicarMatriz(double[][] a, double[][] b) {
+   public static double[][] multiplicarMatriz(double[][] a, double[][] b) {
         double[][] c = new double[a.length][b[0].length];
         // se comprueba si las matrices se pueden multiplicar
         System.out.println("Primera matriz:");
@@ -457,6 +459,26 @@ public class IPC1G4_Practica1 {
             System.out.println("");
         }
         return c;
+    }
+    
+    public static double[][] TranspuestaMatriz(double[][]a){
+      double[][] matrizT = new double[a[0].length][a.length];
+      System.out.println("La matriz es:");
+        for (int i = 0; i < a.length;i++) {
+            for (int j = 0; j < a[0].length; j++) {
+                System.out.print(a[i][j] + "   ");
+            }
+            System.out.println("");
+        }
+        System.out.println("La transpuesta de esa matriz es: ");
+            for (int i=0; i < a.length; i++) {
+                for (int j=0; j < a[i].length; j++) {
+                  matrizT[i][j] = a[j][i];
+                  System.out.print(matrizT[i][j]+ "   ");
+        }System.out.println("");
+            }
+        return matrizT;
+      
     }
 
     public static double[][] sumarMatriz(double[][] matriz1, double[][] matriz2) {
