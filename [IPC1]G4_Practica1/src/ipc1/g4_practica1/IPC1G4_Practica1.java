@@ -71,20 +71,21 @@ public class IPC1G4_Practica1 {
                         Ruta();
                         break;
                     case 2://2.  Sumar matrices  
-                        
+                         System.out.println("Ingrese el nombre de la primera Matriz:");
                         double [][]matriz1 = EncontrarMatriz();//encuentra la matriz para poder ser utilizada y la guardamos en nueva variable
+                         System.out.println("Ingrese el nombre de la segunda Matriz:");
                         double [][]matriz2 = EncontrarMatriz();
                         matrizR = sumarMatriz(matriz1,matriz2);
                         break;
                     case 3://3.  Restar matrices  
+                         System.out.println("Ingrese el nombre de la primera Matriz:");
                         double [][]matriz3 = EncontrarMatriz();//encuentra la matriz para poder ser utilizada y la guardamos en nueva variable
+                         System.out.println("Ingrese el nombre de la segunda Matriz:");
                         double [][]matriz4 = EncontrarMatriz();
                         matrizR = restarMatriz(matriz3,matriz4);
                         break;
                     case 4://4.  Multiplicar matrices  
-                        double [][]matriz5 = EncontrarMatriz();//encuentra la matriz para poder ser utilizada y la guardamos en nueva variable
-                        double [][]matriz6 = EncontrarMatriz();
-                        matrizR = multiplicarMatriz(matriz5,matriz6);
+                       submenuMultiplicacion(); //ACCEDIENTO AL METODO
                         break;
                     case 5://5.  Dividir matrices    
                         break;
@@ -130,7 +131,7 @@ public class IPC1G4_Practica1 {
         File archivo = null;
         FileReader fr = null;
         BufferedReader br = null;
-
+         int contMatriz = 0;
         try {
             // Apertura del fichero y creacion de BufferedReader para poder
             // hacer una lectura comoda (disponer del metodo readLine()).
@@ -147,7 +148,7 @@ public class IPC1G4_Practica1 {
                 //nombre_datos[0] es el nombre de la matriz
 //                System.out.println(nombre_datos[1].trim());// estan los datos de la matriz
                 System.out.println(nombre_datos[0].trim());//estan los datos de los indices
-
+                  
                  if (nombre_datos[1].contains(";") || nombre_datos[1].contains(",") ) { 
                     //La matriz posee varias filas, se puede hacer split
                  if (nombre_datos[1].contains(",") || nombre_datos[1].contains(";")) {
@@ -169,12 +170,12 @@ public class IPC1G4_Practica1 {
                             for (int j = 0; j < datosEnLaFila.length; j++) {
                                 Matriz[i][j] = Double.parseDouble(datosEnLaFila[j].trim());
                                System.out.print("|" + Matriz[i][j] +"|" + "\t"); 
-
+                                
                             }
-
+                               
                             System.out.println("\t");
                             String letra = String.valueOf(nombre_datos[0]);//PARSEA EL INDICE PARA ENTRAR AL SWITCH Y LLENAR LA MATRIZ CORRESPONDIENTE
-
+                            
                             switch (letra) {
                                 case "A":
                                     matrizA = Matriz;
@@ -321,7 +322,7 @@ public class IPC1G4_Practica1 {
                     Matriz[0] = Double.parseDouble(nombre_datos[1].trim());
                 }
             }
-
+           
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -344,10 +345,54 @@ public class IPC1G4_Practica1 {
         String ruta = entrada.nextLine();
         getContentOfFile(ruta);
     }
+    
+    public static void submenuMultiplicacion(){
+         String opcion;
+         int numero;
+         
+  
+       boolean flag = true;
+           while (flag) {
+                flag = false; 
+                
+        System.out.print("-------------");
+        System.out.print(" SUB - MENU ");
+        System.out.println("-------------");
+        System.out.println("  1. MULTIPLICACION MATRIZ-MATRIZ");
+        System.out.println("  2. MULTIPLICACION MATRIZ-NUMERO");
+        System.out.println("--------------------------");
+        System.out.println("\nELEGIN UNA OPCION: \n");
+        opcion = entrada.nextLine();
+        
+        switch(opcion){
+             case "1":{
+                 System.out.println("Ingrese el nombre de la primera Matriz:");
+                  double [][]matriz5 = EncontrarMatriz();//encuentra la matriz para poder ser utilizada y la guardamos en nueva variable
+                   System.out.println("Ingrese el nombre de la segunda Matriz:");
+                  double [][]matriz6 = EncontrarMatriz();
+                  matrizR = multiplicarMatriz(matriz5,matriz6);
+                  break;   
+            }
+              case "2":{
+                    System.out.println("Ingrese el nombre de la primera Matriz");
+                    double [][]matriz7 = EncontrarMatriz();
+                    System.out.println("Ingrese el numero a multiplicar");
+                    numero = entrada.nextInt();
+                    matrizR = multiplicarMatrizNum(matriz7,numero);
+                   break;        
+            } 
+              default:{
+                  System.out.println("La opcion ingresada no es valida");
+                  flag= true;
+              }
+            
+               }// CIERRE DEL SWITCH
+
+           }// CIERRRE DEL WHILE
+    }// CIERRRE DEL METODO SUBMENU
 
     public static double[][] EncontrarMatriz(){
         try{
-        System.out.print("Ingrese el nombre de la Matriz: ");
         String Opcion = entrada.nextLine().toUpperCase();
         switch(Opcion){
             case "A":
@@ -402,31 +447,23 @@ public class IPC1G4_Practica1 {
             return matrizY;
             case "Z":
             return matrizZ;
-         
-        
-        
-        
-        }
-        } catch (Exception e) {
-                System.out.println("¡Ups! Ocurrió un error, inténtalo de nuevo.");
-                entrada.nextLine();
-        
-        
-        
-       ;
-       
-       
-    }
-        return null;
+
+                }
+               } catch (Exception e) {
+                 System.out.println("¡Ups! Ocurrió un error, inténtalo de nuevo.");
+                 entrada.nextLine();
+                  
+                 }
+             return null;
      }
-   
+
    public static double[][] multiplicarMatriz(double[][] a, double[][] b) {
         double[][] c = new double[a.length][b[0].length];
         // se comprueba si las matrices se pueden multiplicar
         System.out.println("Primera matriz:");
         for (int i = 0; i < a.length; i++) {
             for (int j = 0; j < a[0].length; j++) {
-                System.out.print(a[i][j] + "   ");
+                System.out.print("|"+a[i][j] + "|");
             }
             System.out.println("");
         }
@@ -434,7 +471,7 @@ public class IPC1G4_Practica1 {
         System.out.println("Segunda matriz:");
         for (int i = 0; i < b.length;i++) {
             for (int j = 0; j < b[0].length; j++) {
-                System.out.print(b[i][j] + "   ");
+                System.out.print("|"+b[i][j] + "|");
             }
             System.out.println("");
         }
@@ -454,12 +491,43 @@ public class IPC1G4_Practica1 {
         System.out.println("Matriz resultado es:");
         for (int i = 0; i < c.length; i++) {
             for (int j = 0; j < c[0].length; j++) {
-                System.out.print(c[i][j] + "   ");
+                System.out.print("|"+c[i][j] + "|");
             }
             System.out.println("");
         }
         return c;
     }
+   
+   public static double[][] multiplicarMatrizNum(double[][] a,int b){
+      double [][] resultado = new double[a.length][a[0].length]; 
+      
+      System.out.println("Primera matriz:");
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < a[0].length; j++) {
+                System.out.print("|"+a[i][j] + "|");
+            }
+            System.out.println("");
+        }
+        
+        System.out.println("Numero multiplicar");
+        System.out.println(b);
+      
+       
+         for (int x=0; x < resultado.length; x++) {
+          for (int y=0; y < resultado[x].length; y++) {
+            resultado[x][y] = b * a[x][y];
+ 
+      }
+   }
+           System.out.println("Matriz resultado es:");
+         for (int i = 0; i < resultado.length; i++) {
+            for (int j = 0; j < resultado[0].length; j++) {
+                System.out.print("|"+resultado[i][j] + "|");
+            }
+            System.out.println("");
+        }
+       return resultado;
+   }
     
     public static double[][] TranspuestaMatriz(double[][]a){
       double[][] matrizT = new double[a[0].length][a.length];
