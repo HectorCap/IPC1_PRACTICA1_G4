@@ -528,9 +528,9 @@ public class IPC1G4_Practica1 {
         System.out.println("Numero multiplicar");
         System.out.println(b);
 
-        for (int x = 0; x < resultado.length; x++) {
-            for (int y = 0; y < resultado[x].length; y++) {
-                resultado[x][y] = b * a[x][y];
+        for (int i = 0; i < resultado.length; i++) {
+            for (int j = 0; j < resultado[i].length; j++) {
+                resultado[i][j] = b * a[i][j];
 
             }
         }
@@ -657,5 +657,23 @@ public class IPC1G4_Practica1 {
         }
         return matrizResultado;
     }
-
+    
+    public static void determinante(){
+        
+        System.out.println("Ingrese el nombre de la Matriz:");
+         // VARIABLES 
+        double [][]matriz8 = EncontrarMatriz();
+        double determinante;
+        // NUEVA MATRIZ PARA GUARDAR LOS VALORES DE LA INVERSA 
+        System.out.println();
+       
+           //ENCONTRAR DETERMINATE MATRIZ
+        determinante=(matriz8[0][0]*((matriz8[1][1]*matriz8[2][2])-(matriz8[1][2]*matriz8[2][1])))-
+                     (matriz8[0][1]*((matriz8[1][0]*matriz8[2][2])-(matriz8[2][0]*matriz8[1][2])))+
+                     (matriz8[0][2]*((matriz8[1][0]*matriz8[2][1])-(matriz8[2][0]*matriz8[1][1])));
+        System.out.println("");
+        System.out.println("El determinante es :"+determinante);
+       
+        
+    }
 }
