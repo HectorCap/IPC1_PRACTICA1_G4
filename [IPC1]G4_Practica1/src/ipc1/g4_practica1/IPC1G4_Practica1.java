@@ -87,13 +87,13 @@ public class IPC1G4_Practica1 {
                         System.out.println("Ingrese el nombre de la segunda Matriz:");
                         double[][] matriz2 = EncontrarMatriz();
                         if (matriz1.length == matriz2.length) {
-                            R1 = sumarMatriz(matriz1, matriz2);
-                            M1 = "suma";
+                            
                             
                             matrizR = sumarMatriz(matriz1, matriz2);
                         } else {
                             System.out.println("la matriz no es de mismo orden, no se pueden sumar");
                         }
+                        
                          
                         break;
 
@@ -105,8 +105,7 @@ public class IPC1G4_Practica1 {
                         double[][] matriz4 = EncontrarMatriz();
 
                         if (matriz3.length == matriz4.length) {
-                            R2 = restarMatriz(matriz3, matriz4);
-                            M2 = "resta";
+                            
                             
                             
                             
@@ -133,10 +132,10 @@ public class IPC1G4_Practica1 {
                         break;
 
                     case 7://7.  Matriz inversa   
+                        System.out.println("Ingrese la matriz que desea invertir:");
                         double[][] matriz12 = EncontrarMatriz();
                         matrizR = CalcInverso(matriz12);
-                        R7 = CalcInverso(matriz12);
-                        M7 = "Matriz Inversa";
+                        
                         ImprimirMatrices(matrizR);
                         break;
 
@@ -672,7 +671,10 @@ public class IPC1G4_Practica1 {
             }
             System.out.println("");
         }
+        R1 = matrizResultado;
+        M1 = "suma";
         return matrizResultado;
+        
     }
 
     public static double[][] restarMatriz(double[][] matriz3, double[][] matriz4) {
@@ -716,8 +718,14 @@ public class IPC1G4_Practica1 {
             for (int j = 0; j < columnasA; j++) {
                 System.out.print("|" + matrizResultado[i][j] + "|");
             }
+            R2 = matrizResultado;
+            M2 = "resta";
             System.out.println("");
         }
+        
+        
+        
+        
         return matrizResultado;
     }
 
@@ -773,6 +781,8 @@ public class IPC1G4_Practica1 {
     }
 
     public static double[][] CalcInverso(double matriz[][]) {
+        
+        
         //Creamos otra matriz
         //Matriz escalonada para comparar
         double inversa[][] = new double[matriz.length][matriz.length];
@@ -839,6 +849,8 @@ public class IPC1G4_Practica1 {
                 }
             }
         }
+        R7 = inversa;
+        M7 = "Matriz Inversa";
         return inversa;
 
     }
@@ -860,8 +872,7 @@ public class IPC1G4_Practica1 {
         double[][] matriz02 = EncontrarMatriz();
         double[][] matriz02Inversa = CalcInverso(matriz02);// CALCULANDO LA INVERSA DE LA MATRIZ 
 
-        matrizR = multiplicarMatriz(matriz01, matriz02Inversa);
-        R5 = multiplicarMatriz(matriz01, matriz02Inversa);
+        matrizR = R5 = multiplicarMatriz(matriz01, matriz02Inversa);
         M5 = "Division";
         
         System.out.println("");
