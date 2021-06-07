@@ -36,6 +36,7 @@ public class IPC1G4_Practica1 {
     public static double matrizX[][];
     public static double matrizY[][];
     public static double matrizZ[][];
+    public static double Inversa[][];
     public static String[] nombre_datos;//Vector donde estan los nombres de la matriz
 
     public static void main(String[] args) {
@@ -85,6 +86,7 @@ public class IPC1G4_Practica1 {
                                 System.out.println("la matriz no es de mismo orden, no se pueden sumar");
                             }
                        break;
+                       
                     case 3://3.  Restar matrices 
                         
                         System.out.println("Ingrese el nombre de la primera Matriz:");
@@ -98,25 +100,35 @@ public class IPC1G4_Practica1 {
                             else{
                                 System.out.println("la matriz no es de mismo orden, no se pueden restar");
                             }
-                        
                         break;
                         
                     case 4://4.  Multiplicar matrices  
-                        submenuMultiplicacion(); //ACCEDIENTO AL METODO
+                        submenuMultiplicacion(); //ACCEDIENTO AL METODO SUMBMENU
                         break;
+                        
                     case 5://5.  Dividir matrices    
+                        DivisionMatrices();
                         break;
+                        
                     case 6://6.  Traspuesta de una matriz  
+                         System.out.println("Ingrese el nombre de la Matriz:");
                         double[][] matriz7 = EncontrarMatriz();
                         matrizR = TranspuestaMatriz(matriz7);
                         break;
-                    case 7://7.  Matriz inversa    
+                        
+                    case 7://7.  Matriz inversa   
+                        double[][] matriz12 = EncontrarMatriz();
+                        matrizR = CalcInverso(matriz12);
+                        ImprimirMatrices(matrizR);
                         break;
+                        
                     case 8://8.  Potencia de una matriz   
                         break;
+                        
                     case 9://9.  Determinante de una matriz 
                         determinante();
                         break;
+                        
                     case 10://10. Matriz R   
                         System.out.println("La matriz R es: ");
                         for (int i = 0; i < matrizR.length; i++) {
@@ -127,12 +139,15 @@ public class IPC1G4_Practica1 {
                             System.out.println("");
                         }
                         break;
+                        
                     case 11://11. Reportes 
                         break;
+                        
                     case 12://12. SALIR
                         System.out.println("Gracias por utilizar el programa ");
                         System.out.println("Saliendo...");
                         break;
+                        
                     default:
                         System.out.println("Opcion no válida. Inténtelo de nuevo.");
                         break;
@@ -663,18 +678,137 @@ public class IPC1G4_Practica1 {
         
         System.out.println("Ingrese el nombre de la Matriz:");
          // VARIABLES 
+         // NUEVA MATRIZ PARA GUARDAR LOS VALORES DE LA MATRIZ ENCONTRADA
         double [][]matriz8 = EncontrarMatriz();
         double determinante;
-        // NUEVA MATRIZ PARA GUARDAR LOS VALORES DE LA INVERSA 
-        System.out.println();
-       
+        
+        if(matriz8[0].length == 3 & matriz8.length == 3){// DETERMINANTE PARA MATRIZ 3x3
+             System.out.println("Matriz Seleccionada:");
+             System.out.println("");
+              for (int i = 0; i < matriz8.length; i++) {
+              for (int j = 0; j < matriz8[0].length; j++) {
+                System.out.print("|" + matriz8[i][j] + "|");
+             }
+             System.out.println("");
+        }
            //ENCONTRAR DETERMINATE MATRIZ
-        determinante=(matriz8[0][0]*((matriz8[1][1]*matriz8[2][2])-(matriz8[1][2]*matriz8[2][1])))-
+         determinante=(matriz8[0][0]*((matriz8[1][1]*matriz8[2][2])-(matriz8[1][2]*matriz8[2][1])))-
                      (matriz8[0][1]*((matriz8[1][0]*matriz8[2][2])-(matriz8[2][0]*matriz8[1][2])))+
                      (matriz8[0][2]*((matriz8[1][0]*matriz8[2][1])-(matriz8[2][0]*matriz8[1][1])));
-        System.out.println("");
-        System.out.println("El determinante es :"+determinante);
+         System.out.println("");
+         System.out.println("El determinante es :"+determinante);  
+        
+          }else if(matriz8[0].length == 2 & matriz8.length == 2){// DETERMINANTE PARA MATRIZ 2x2
+             System.out.println("Matriz Seleccionada:");
+             System.out.println("");
+              for (int i = 0; i < matriz8.length; i++) {
+              for (int j = 0; j < matriz8[0].length; j++) {
+                System.out.print("|" + matriz8[i][j] + "|");
+             }
+             System.out.println("");
+          }
+            //ENCONTRAR DETERMINATE MATRIZ
+            determinante=(matriz8[0][0]*matriz8[1][1])-(matriz8[1][0]*matriz8[0][1]);
+            System.out.println("");
+            System.out.println("El determinante es :"+determinante);  
+            }else{
+            System.out.println("Oden maximo 3 porfavor");
+           }
        
+    }
+    
+    public static double[][] CalcInverso(double matriz[][] ){
+        //Creamos otra matriz
+        //Matriz escalonada para comparar
+          double inversa[][] = new double [matriz.length][matriz.length]; 
+        //Contador de espacios para diagonal principal
+        int contSpacio= 0;
+        //Cambiar todos los elementos de la diagonal principal a 0
+        for(int i=0; i<matriz.length;i++){
+            for(int j=0; j<matriz.length; j++){
+                if(contSpacio == j){
+                    inversa[i][j] = 1;
+                }
+                else{
+                    inversa[i][j] = 0;
+                }
+            }
+             contSpacio++;
+        }
+        
+        //Reiniciando contSpacio para operear la inversa
+        contSpacio =0;
+        //Almacenamiento del número a operar por cada fila y columna
+        double operacion=0;
+        //Operando para obtener la matriz inversa
+    //Operando de diagonal hacía abajo
+    for(int i=0; i<matriz.length;i++){
+            for(int j=0; j<matriz.length; j++){
+                //Paso 1 - volver 1 el valor de la diagonal y operar su columna
+                //Verificando si estamos en un pivote
+                if(i== j){
+                    //Ciclo para dividir fila para volver 1 la diagonal
+                   
+                    operacion = (1/matriz[i][j]);
+                    for(int operacionCol=0; operacionCol<matriz.length;operacionCol++){
+                       matriz[i][operacionCol] =  matriz[i][operacionCol] * operacion;
+                       inversa[i][operacionCol] = inversa[i][operacionCol] * operacion;
+                    }
+                   
+                    double constanteUno = matriz[i][j];
+                    if(constanteUno <0){
+                        System.out.println("SE HIZ0 NEGATIVO PORQUE - FILA: "+i+" COLUMNA: "+j);
+                    }
+                    double constanteDos =0;
+//                  //Obteniendo constante de fila pivote
+                    for(int operacionfilas=0; operacionfilas<matriz.length;operacionfilas++){
+                        if(operacionfilas!=i){
+                            for(int operacioonCol=0; operacioonCol<matriz.length; operacioonCol++){  
+                               if(operacioonCol==j){
+                                    constanteDos = matriz[operacionfilas][operacioonCol];
+
+                                    for(int insideCol=0; insideCol<matriz.length; insideCol++){
+                                                               
+                                        matriz[operacionfilas][insideCol] = constanteUno*matriz[operacionfilas][insideCol] - (constanteDos*matriz[i][insideCol]);
+                                        inversa[operacionfilas][insideCol] = constanteUno*inversa[operacionfilas][insideCol] - (constanteDos*inversa[i][insideCol]); 
+                                        if(matriz[operacionfilas][insideCol] == Double.NaN || inversa[operacionfilas][insideCol]  == Double.NaN ){
+                                            System.out.println("Esta matriz no tiene inversa");
+                                            
+                                        }
+                                    }
+                               }
+                            }
+                           
+//                           
+                        }
+                    }
+                }
+            }
+        }
+         return inversa;
+        
+    } 
+       
+    public static void ImprimirMatrices(double[][] matriz){
+           System.out.println("Matriz resultante: ");
+           for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[0].length; j++) {
+                System.out.print("|" + matriz[i][j] + "|");
+            }
+            System.out.println("");
+        }
+    }//METODO PARA IMPRIMIR LAS MATRICES
+    
+    public static void DivisionMatrices(){
+        System.out.println("Ingrese la primera Matriz");
+        double[][] matriz01 = EncontrarMatriz();
+        System.out.println("Ingrese la segunda Matriz");
+        double[][] matriz02 = EncontrarMatriz();
+        double[][] matriz02Inversa = CalcInverso(matriz02);// CALCULANDO LA INVERSA DE LA MATRIZ 
+        
+        matrizR = multiplicarMatriz(matriz01,matriz02Inversa);
+        System.out.println("");
+        ImprimirMatrices(matrizR);
         
     }
 }
