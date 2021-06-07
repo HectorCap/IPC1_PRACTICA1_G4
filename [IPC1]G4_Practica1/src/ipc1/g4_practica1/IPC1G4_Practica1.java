@@ -39,12 +39,12 @@ public class IPC1G4_Practica1 {
     public static double matrizY[][];
     public static double matrizZ[][];
     public static double Inversa[][];
-    
+
     public static double determinante;
 
-    public static double R1[][], R2[][], R3[][], R4[][], R5[][], R6[][], R7[][], R8[][], R9[][], R10[][], R11[][], R12[][], R13[][], R14[][], R15[][],R16[][],R17[][],R18[][],R19[][], R20[][];
-    public static String M1, M2, M3, M4, M5, M6, M7, M8, M9, M10, M11, M12, M13, M14, M15,M16,M17,M18,M19, M20;
-    
+    public static double R1[][], R2[][], R3[][], R4[][], R5[][], R6[][], R7[][], R8[][], R9[][], R10[][], R11[][], R12[][], R13[][], R14[][], R15[][], R16[][], R17[][], R18[][], R19[][], R20[][];
+    public static String M1, M2, M3, M4, M5, M6, M7, M8, M9, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20;
+
     public static String[] nombre_datos;//Vector donde estan los nombres de la matriz
 
     public static void main(String[] args) {
@@ -57,12 +57,11 @@ public class IPC1G4_Practica1 {
             try {
 
                 // intento de push
-                
                 System.out.println("            __  ___    ___  __");
                 System.out.println("    |\\  /| |  |  |    |    |  | | ");
                 System.out.println("    | \\/ | | _|  | __ |    | _| |");
                 System.out.println("    |    | |  |  |    |___ |  | |___");
-              
+
                 System.out.println("-------------Menu principal-------------");
                 System.out.println("    1.  Cargar matrices                 ");
                 System.out.println("    2.  Sumar matrices                  ");
@@ -85,7 +84,6 @@ public class IPC1G4_Practica1 {
                     case 1://1.  Cargar matrices  
 
                         Ruta();
-                       
 
                         break;
                     case 2://2.  Sumar matrices  
@@ -95,14 +93,12 @@ public class IPC1G4_Practica1 {
                         System.out.println("Ingrese el nombre de la segunda Matriz:");
                         double[][] matriz2 = EncontrarMatriz();
                         if (matriz1.length == matriz2.length) {
-                            
-                            
+
                             matrizR = sumarMatriz(matriz1, matriz2);
                         } else {
                             System.out.println("la matriz no es de mismo orden, no se pueden sumar");
                         }
-                        
-                         
+
                         break;
 
                     case 3://3.  Restar matrices 
@@ -113,10 +109,7 @@ public class IPC1G4_Practica1 {
                         double[][] matriz4 = EncontrarMatriz();
 
                         if (matriz3.length == matriz4.length) {
-                            
-                            
-                            
-                            
+
                             matrizR = restarMatriz(matriz3, matriz4);
                         } else {
                             System.out.println("la matriz no es de mismo orden, no se pueden restar");
@@ -143,7 +136,7 @@ public class IPC1G4_Practica1 {
                         System.out.println("Ingrese la matriz que desea invertir:");
                         double[][] matriz12 = EncontrarMatriz();
                         matrizR = CalcInverso(matriz12);
-                        
+
                         ImprimirMatrices(matrizR);
                         break;
 
@@ -403,14 +396,13 @@ public class IPC1G4_Practica1 {
                         double[] Matriz = new double[1];
                         Matriz[0] = Double.parseDouble(nombre_datos[1].trim());
                     }
-                    
-                    
+
                 } else {
                     System.out.println("archivo demasiado grande, solo lee 26 matrices");
                 }
-              
+
             }
-       
+
         } catch (Exception e) {
             System.out.println("OPS! no se encotro el archivo en ruta");
         } finally {
@@ -458,8 +450,7 @@ public class IPC1G4_Practica1 {
                     double[][] matriz5 = EncontrarMatriz();//encuentra la matriz para poder ser utilizada y la guardamos en nueva variable
                     System.out.println("Ingrese el nombre de la segunda Matriz:");
                     double[][] matriz6 = EncontrarMatriz();
-                    matrizR = multiplicarMatriz(matriz5, matriz6);
-                    R3 = multiplicarMatriz(matriz5, matriz6);
+                    R3 = matrizR = multiplicarMatriz(matriz5, matriz6);
                     M3 = "multiplicacion matriz - matriz";
                     break;
                 }
@@ -468,8 +459,7 @@ public class IPC1G4_Practica1 {
                     double[][] matriz7 = EncontrarMatriz();
                     System.out.println("Ingrese el numero a multiplicar");
                     numero = entrada.nextInt();
-                    matrizR = multiplicarMatrizNum(matriz7, numero);
-                    R4  = multiplicarMatrizNum(matriz7, numero);
+                    R4 = matrizR = multiplicarMatrizNum(matriz7, numero);
                     M4 = "multiplicacion matriz - numero entero";
                     break;
                 }
@@ -688,7 +678,7 @@ public class IPC1G4_Practica1 {
         R1 = matrizResultado;
         M1 = "suma";
         return matrizResultado;
-        
+
     }
 
     public static double[][] restarMatriz(double[][] matriz3, double[][] matriz4) {
@@ -732,24 +722,21 @@ public class IPC1G4_Practica1 {
             for (int j = 0; j < columnasA; j++) {
                 System.out.print("|" + matrizResultado[i][j] + "|");
             }
-            R2 = matrizResultado;
-            M2 = "resta";
+
             System.out.println("");
         }
-        
-        
-        
-        
+
+        R2 = matrizResultado;
+        M2 = "resta";
         return matrizResultado;
     }
 
     public static void determinante() {
 
         System.out.println("Ingrese el nombre de la Matriz:");
-         // VARIABLES 
+        // VARIABLES 
         // NUEVA MATRIZ PARA GUARDAR LOS VALORES DE LA MATRIZ ENCONTRADA
         double[][] matriz8 = EncontrarMatriz();
-        
 
         if (matriz8[0].length == 3 & matriz8.length == 3) {// DETERMINANTE PARA MATRIZ 3x3
             System.out.println("Matriz Seleccionada:");
@@ -776,8 +763,7 @@ public class IPC1G4_Practica1 {
                     System.out.print("|" + matriz8[i][j] + "|");
                 }
                 System.out.println("");
-                
-              
+
             }
             //ENCONTRAR DETERMINATE MATRIZ
             determinante = (matriz8[0][0] * matriz8[1][1]) - (matriz8[1][0] * matriz8[0][1]);
@@ -788,14 +774,11 @@ public class IPC1G4_Practica1 {
         } else {
             System.out.println("Oden maximo 3 porfavor");
         }
-        
-        
 
     }
 
     public static double[][] CalcInverso(double matriz[][]) {
-        
-        
+
         //Creamos otra matriz
         //Matriz escalonada para comparar
         double inversa[][] = new double[matriz.length][matriz.length];
@@ -887,7 +870,7 @@ public class IPC1G4_Practica1 {
 
         matrizR = R5 = multiplicarMatriz(matriz01, matriz02Inversa);
         M5 = "Division";
-        
+
         System.out.println("");
 
     }
@@ -934,169 +917,169 @@ public class IPC1G4_Practica1 {
             cuerpo += "<h1> mensaje: " + "matriz A" + "</h1> <br><br>";
             cuerpo += obtenerTablaHtml(matrizA) + "\n";
         }
-        
-        if (matrizB!=null) {
-        cuerpo += "<h1> mensaje: " + "matriz B" + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(matrizB) + "\n";
+
+        if (matrizB != null) {
+            cuerpo += "<h1> mensaje: " + "matriz B" + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(matrizB) + "\n";
         }
-        
-        if (matrizC!=null) {
-        cuerpo += "<h1> mensaje: " + "matriz C" + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(matrizC) + "\n";
+
+        if (matrizC != null) {
+            cuerpo += "<h1> mensaje: " + "matriz C" + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(matrizC) + "\n";
         }
-        
-        if (matrizD!=null) {
-        cuerpo += "<h1> mensaje: " + "matriz D" + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(matrizD) + "\n";
+
+        if (matrizD != null) {
+            cuerpo += "<h1> mensaje: " + "matriz D" + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(matrizD) + "\n";
         }
-        
-        if (matrizE!=null) {
-        cuerpo += "<h1> mensaje: " + "matriz E" + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(matrizE) + "\n";
+
+        if (matrizE != null) {
+            cuerpo += "<h1> mensaje: " + "matriz E" + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(matrizE) + "\n";
         }
-        
-        if (matrizF!=null) {
-        cuerpo += "<h1> mensaje: " + "matriz F" + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(matrizF) + "\n";
+
+        if (matrizF != null) {
+            cuerpo += "<h1> mensaje: " + "matriz F" + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(matrizF) + "\n";
         }
-        
-        if (matrizG!=null) {
-        cuerpo += "<h1> mensaje: " + "matriz G" + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(matrizG) + "\n";
+
+        if (matrizG != null) {
+            cuerpo += "<h1> mensaje: " + "matriz G" + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(matrizG) + "\n";
         }
-        
-        if (matrizH!=null) {
-        cuerpo += "<h1> mensaje: " + "matriz H" + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(matrizH) + "\n";
+
+        if (matrizH != null) {
+            cuerpo += "<h1> mensaje: " + "matriz H" + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(matrizH) + "\n";
         }
-        
-        if (matrizI!=null) {
-        cuerpo += "<h1> mensaje: " + "matriz I" + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(matrizI) + "\n";
+
+        if (matrizI != null) {
+            cuerpo += "<h1> mensaje: " + "matriz I" + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(matrizI) + "\n";
         }
-        
-        if (matrizJ!=null) {
-        cuerpo += "<h1> mensaje: " + "matriz J" + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(matrizJ) + "\n";
+
+        if (matrizJ != null) {
+            cuerpo += "<h1> mensaje: " + "matriz J" + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(matrizJ) + "\n";
         }
-        
-        if (matrizK!=null) {
-        cuerpo += "<h1> mensaje: " + "matriz K" + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(matrizK) + "\n";
+
+        if (matrizK != null) {
+            cuerpo += "<h1> mensaje: " + "matriz K" + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(matrizK) + "\n";
         }
-        
-        if (matrizL!=null) {
-        cuerpo += "<h1> mensaje: " + "matriz L" + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(matrizL) + "\n";
+
+        if (matrizL != null) {
+            cuerpo += "<h1> mensaje: " + "matriz L" + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(matrizL) + "\n";
         }
-        
-        if (matrizM!=null) {
-        cuerpo += "<h1> mensaje: " + "matriz M" + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(matrizM) + "\n";
+
+        if (matrizM != null) {
+            cuerpo += "<h1> mensaje: " + "matriz M" + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(matrizM) + "\n";
         }
-        
-        if (matrizN!=null) {
-        cuerpo += "<h1> mensaje: " + "matriz N" + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(matrizN) + "\n";
+
+        if (matrizN != null) {
+            cuerpo += "<h1> mensaje: " + "matriz N" + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(matrizN) + "\n";
         }
-        
-        if (matrizO!=null) {
-        cuerpo += "<h1> mensaje: " + "matriz O" + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(matrizO) + "\n";
+
+        if (matrizO != null) {
+            cuerpo += "<h1> mensaje: " + "matriz O" + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(matrizO) + "\n";
         }
-        
-        if (matrizP!=null) {
-        cuerpo += "<h1> mensaje: " + "matriz P" + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(matrizP) + "\n";
+
+        if (matrizP != null) {
+            cuerpo += "<h1> mensaje: " + "matriz P" + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(matrizP) + "\n";
         }
-        
-        if (matrizQ!=null) {
-        cuerpo += "<h1> mensaje: " + "matriz Q" + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(matrizQ) + "\n";
+
+        if (matrizQ != null) {
+            cuerpo += "<h1> mensaje: " + "matriz Q" + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(matrizQ) + "\n";
         }
-        
-        if (matrizR!=null) {
-        cuerpo += "<h1> mensaje: " + "matriz R" + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(matrizR) + "\n";
+
+        if (matrizR != null) {
+            cuerpo += "<h1> mensaje: " + "matriz R" + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(matrizR) + "\n";
         }
-        
-        if (matrizS!=null) {
-        cuerpo += "<h1> mensaje: " + "matriz S" + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(matrizS) + "\n";
+
+        if (matrizS != null) {
+            cuerpo += "<h1> mensaje: " + "matriz S" + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(matrizS) + "\n";
         }
-        
-        if (matrizT!=null) {
-        cuerpo += "<h1> mensaje: " + "matriz T" + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(matrizT) + "\n";
+
+        if (matrizT != null) {
+            cuerpo += "<h1> mensaje: " + "matriz T" + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(matrizT) + "\n";
         }
-        
-        if (matrizU!=null) {
-        cuerpo += "<h1> mensaje: " + "matriz U" + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(matrizU) + "\n";
+
+        if (matrizU != null) {
+            cuerpo += "<h1> mensaje: " + "matriz U" + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(matrizU) + "\n";
         }
-        
-        if (matrizV!=null) {
-        cuerpo += "<h1> mensaje: " + "matriz V" + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(matrizV) + "\n";
+
+        if (matrizV != null) {
+            cuerpo += "<h1> mensaje: " + "matriz V" + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(matrizV) + "\n";
         }
-        
-        if (matrizW!=null) {
-        cuerpo += "<h1> mensaje: " + "matriz W" + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(matrizW) + "\n";
+
+        if (matrizW != null) {
+            cuerpo += "<h1> mensaje: " + "matriz W" + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(matrizW) + "\n";
         }
-        
-        if (matrizX!=null) {
-        cuerpo += "<h1> mensaje: " + "matriz X" + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(matrizX) + "\n";
+
+        if (matrizX != null) {
+            cuerpo += "<h1> mensaje: " + "matriz X" + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(matrizX) + "\n";
         }
-        
-        if (matrizY!=null) {
-        cuerpo += "<h1> mensaje: " + "matriz Y" + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(matrizY) + "\n";
+
+        if (matrizY != null) {
+            cuerpo += "<h1> mensaje: " + "matriz Y" + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(matrizY) + "\n";
         }
-        if (matrizZ!=null) {
-        cuerpo += "<h1> mensaje: " + "matriz Z" + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(matrizZ) + "\n";
+        if (matrizZ != null) {
+            cuerpo += "<h1> mensaje: " + "matriz Z" + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(matrizZ) + "\n";
         }
-        if (R1!=null) {
-        cuerpo += "<h1>     Operacion: " + M1 + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(R1) + "\n";
+        if (R1 != null) {
+            cuerpo += "<h1>     Operacion: " + M1 + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(R1) + "\n";
         }
-        if (R2!=null) {
-        cuerpo += "<h1>     Operacion: " + M2 + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(R2) + "\n";
+        if (R2 != null) {
+            cuerpo += "<h1>     Operacion: " + M2 + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(R2) + "\n";
         }
-        if (R3!=null) {
-        cuerpo += "<h1>     Operacion: " + M3 + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(R3) + "\n";
+        if (R3 != null) {
+            cuerpo += "<h1>     Operacion: " + M3 + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(R3) + "\n";
         }
-        if (R4!=null) {
-        cuerpo += "<h1>     Operacion: " + M4 + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(R4) + "\n";
+        if (R4 != null) {
+            cuerpo += "<h1>     Operacion: " + M4 + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(R4) + "\n";
         }
-        if (R5!=null) {
-        cuerpo += "<h1>     Operacion: " + M5 + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(R5) + "\n";
+        if (R5 != null) {
+            cuerpo += "<h1>     Operacion: " + M5 + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(R5) + "\n";
         }
-        if (R6!=null) {
-        cuerpo += "<h1>     Operacion: " + M6 + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(R6) + "\n";
+        if (R6 != null) {
+            cuerpo += "<h1>     Operacion: " + M6 + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(R6) + "\n";
         }
-        if (R7!=null) {
-        cuerpo += "<h1>     Operacion: " + M7 + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(R7) + "\n";
+        if (R7 != null) {
+            cuerpo += "<h1>     Operacion: " + M7 + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(R7) + "\n";
         }
-        if (R8!=null) {
-        cuerpo += "<h1>     Operacion: " + M8 + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(R8) + "\n";
+        if (R8 != null) {
+            cuerpo += "<h1>     Operacion: " + M8 + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(R8) + "\n";
         }
-        if (R9!=null) {
-        cuerpo += "<h1>     Operacion: " + M9 + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(R9) + "\n";
+        if (R9 != null) {
+            cuerpo += "<h1>     Operacion: " + M9 + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(R9) + "\n";
         }
-        if (R10!=null) {
-        cuerpo += "<h1>     Operacion: " + M10 + "</h1> <br><br>";
-        cuerpo += obtenerTablaHtml(R10) + "\n";
+        if (R10 != null) {
+            cuerpo += "<h1>     Operacion: " + M10 + "</h1> <br><br>";
+            cuerpo += obtenerTablaHtml(R10) + "\n";
         }
         cuerpo += "<h1>     Determinante: " + determinante + "</h1> <br><br>";
         cuerpo += "\n"
