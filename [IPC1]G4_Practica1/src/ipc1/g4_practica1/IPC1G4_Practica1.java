@@ -69,7 +69,10 @@ public class IPC1G4_Practica1 {
 
                 switch (opcion) {
                     case 1://1.  Cargar matrices  
+                        
                         Ruta();
+                        
+                        
                         break;
                     case 2://2.  Sumar matrices  
                         
@@ -207,7 +210,7 @@ public class IPC1G4_Practica1 {
                             }
 
                             System.out.println("\t");
-                            String letra = String.valueOf(nombre_datos[0]);//PARSEA EL INDICE PARA ENTRAR AL SWITCH Y LLENAR LA MATRIZ CORRESPONDIENTE
+                            String letra = String.valueOf(nombre_datos[0].trim());//PARSEA EL INDICE PARA ENTRAR AL SWITCH Y LLENAR LA MATRIZ CORRESPONDIENTE
 
                             switch (letra) {
                                 case "A":
@@ -357,7 +360,7 @@ public class IPC1G4_Practica1 {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("OPS! no se encotro el archivo en ruta");
         } finally {
             // En el finally cerramos el fichero, para asegurarnos
             // que se cierra tanto si todo va bien como si salta
@@ -375,6 +378,8 @@ public class IPC1G4_Practica1 {
 
     public static void Ruta() {//carga y guardado del contenido del Txt
         System.out.print("Ingrese ruta del txt: ");
+        
+        
         String ruta = entrada.nextLine();
         getContentOfFile(ruta);
     }
@@ -808,7 +813,7 @@ public class IPC1G4_Practica1 {
         
         matrizR = multiplicarMatriz(matriz01,matriz02Inversa);
         System.out.println("");
-        ImprimirMatrices(matrizR);
+        
         
     }
 }
