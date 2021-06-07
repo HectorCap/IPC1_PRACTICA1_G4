@@ -40,6 +40,8 @@ public class IPC1G4_Practica1 {
     public static double matrizZ[][];
     public static double Inversa[][];
     
+    public static double determinante;
+
     public static double R1[][], R2[][], R3[][], R4[][], R5[][], R6[][], R7[][], R8[][], R9[][], R10[][], R11[][], R12[][], R13[][], R14[][], R15[][],R16[][],R17[][],R18[][],R19[][], R20[][];
     public static String M1, M2, M3, M4, M5, M6, M7, M8, M9, M10, M11, M12, M13, M14, M15,M16,M17,M18,M19, M20;
     
@@ -55,6 +57,12 @@ public class IPC1G4_Practica1 {
             try {
 
                 // intento de push
+                
+                System.out.println("            __  ___    ___  __");
+                System.out.println("    |\\  /| |  |  |    |    |  | | ");
+                System.out.println("    | \\/ | | _|  | __ |    | _| |");
+                System.out.println("    |    | |  |  |    |___ |  | |___");
+              
                 System.out.println("-------------Menu principal-------------");
                 System.out.println("    1.  Cargar matrices                 ");
                 System.out.println("    2.  Sumar matrices                  ");
@@ -174,6 +182,9 @@ public class IPC1G4_Practica1 {
 
                     case 11://11. Reportes
                         hacerHtml();
+
+                        System.out.println("Se genero los reportes con exito!.. ");
+                        System.out.println("");
                         break;
 
                     case 12://12. SALIR
@@ -392,11 +403,14 @@ public class IPC1G4_Practica1 {
                         double[] Matriz = new double[1];
                         Matriz[0] = Double.parseDouble(nombre_datos[1].trim());
                     }
+                    
+                    
                 } else {
                     System.out.println("archivo demasiado grande, solo lee 26 matrices");
                 }
+              
             }
-
+       
         } catch (Exception e) {
             System.out.println("OPS! no se encotro el archivo en ruta");
         } finally {
@@ -735,7 +749,6 @@ public class IPC1G4_Practica1 {
          // VARIABLES 
         // NUEVA MATRIZ PARA GUARDAR LOS VALORES DE LA MATRIZ ENCONTRADA
         double[][] matriz8 = EncontrarMatriz();
-        double determinante;
         
 
         if (matriz8[0].length == 3 & matriz8.length == 3) {// DETERMINANTE PARA MATRIZ 3x3
@@ -883,7 +896,7 @@ public class IPC1G4_Practica1 {
         FileWriter fichero = null;
         PrintWriter pw = null;
         try {
-            fichero = new FileWriter("C:\\Users\\marth\\Desktop\\reportes.html");
+            fichero = new FileWriter("reportes.html");
             pw = new PrintWriter(fichero);
 
             pw.println(mensaje);
@@ -1085,7 +1098,7 @@ public class IPC1G4_Practica1 {
         cuerpo += "<h1>     Operacion: " + M10 + "</h1> <br><br>";
         cuerpo += obtenerTablaHtml(R10) + "\n";
         }
-        
+        cuerpo += "<h1>     Determinante: " + determinante + "</h1> <br><br>";
         cuerpo += "\n"
                 + "</body>\n"
                 + "</html>";
