@@ -126,6 +126,21 @@ public class IPC1G4_Practica1 {
                         break;
                         
                     case 8://8.  Potencia de una matriz   
+                        System.out.println("ingrese la matriz a potenciar:");
+      
+                        double[][] matrizPotencia = EncontrarMatriz();
+                        double[][] matrizPotenciab = matrizPotencia;
+                        System.out.println("elevar a la potencia:");
+                        int potencia = entrada.nextInt();
+                        
+                        
+                        
+                        for (int i = 0; i < potencia-1; i++) {
+                            
+                            matrizPotencia = multiplicarMatriz(matrizPotencia,matrizPotenciab);
+                            
+                        }
+                        
                         break;
                         
                     case 9://9.  Determinante de una matriz 
@@ -177,9 +192,15 @@ public class IPC1G4_Practica1 {
             // Lectura del fichero
             String content = "";
             String linea;
+            int contadorFilas=0;
+            
             //Cada linea leída del txt representa una matriz            
             while ((linea = br.readLine()) != null) {
-
+                contadorFilas++;
+                
+                if (contadorFilas<=26) {
+                    
+                
                 nombre_datos = linea.split(":");
                 //nombre_datos[0] es el nombre de la matriz
 //                System.out.println(nombre_datos[1].trim());// estan los datos de la matriz
@@ -356,6 +377,8 @@ public class IPC1G4_Practica1 {
                     //Declarando la matriz
                     double[] Matriz = new double[1];
                     Matriz[0] = Double.parseDouble(nombre_datos[1].trim());
+                }}else{
+                    System.out.println("archivo demasiado grande, solo lee 26 matrices");
                 }
             }
 
