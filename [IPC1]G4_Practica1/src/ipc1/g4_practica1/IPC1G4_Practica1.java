@@ -140,6 +140,7 @@ public class IPC1G4_Practica1 {
                             matrizPotencia = multiplicarMatriz(matrizPotencia,matrizPotenciab);
                             
                         }
+                        matrizR = matrizPotencia;
                         
                         break;
                         
